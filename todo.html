@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To_Do_List</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #f0ded0, #f1889b);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #box {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        #addButton {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #addButton:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        li:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <form>
+            <input type="text" placeholder="Enter a to-do item" id="box">
+            <input type="button" value="Add" id="addButton" onclick="addItem()">
+        </form>
+        <ul id="listItems"></ul>
+    </div>
+
+    <script>
+        function addItem() {
+            let inputBox = document.getElementById("box");
+            let itemList = document.getElementById("listItems");
+
+            if (inputBox.value.trim() !== "") {
+                let listItem = document.createElement("li");
+                listItem.appendChild(document.createTextNode(inputBox.value));
+                itemList.appendChild(listItem);
+                inputBox.value = "";
+
+                listItem.onclick = function() {
+                    this.parentNode.removeChild(this);
+                };
+            } else {
+                alert("Please add a value to the item.");
+            }
+        }
+    </script>
+</body>
+</html>
